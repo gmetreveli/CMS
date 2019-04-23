@@ -20,7 +20,7 @@
 
         $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status) ";
 
-        $query .="VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}',)";
+        $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_comment_count}','{$post_status}')";
 
         $create_post_query = mysqli_query($connection, $query);
 
@@ -42,7 +42,7 @@
 
     <div class="form-group">
 
-        <label for="post_category">Post Category Id</label>
+        <label for="category">Post Category Id</label>
         <input type="text" class="form-control" name="post_category_id">
 
     </div>
@@ -56,28 +56,28 @@
 
     <div class="form-group">
 
-        <label for="author">Post Status</label>
+        <label for="status">Post Status</label>
         <input type="text" class="form-control" name="post_status">
 
     </div>
 
     <div class="form-group">
 
-        <label for="author">Post Image</label>
-        <input type="text" class="form-control" name="post_image">
+        <label for="image">Post Image</label>
+        <input type="file" name="post_image">
 
     </div>
 
     <div class="form-group">
 
-        <label for="author">Post Tags</label>
+        <label for="tags">Post Tags</label>
         <input type="text" class="form-control" name="post_tags">
 
     </div>
 
     <div class="form-group">
 
-        <label for="author">Post Content</label>
+        <label for="content">Post Content</label>
         <textarea class="form-control" name="post_content" id="" cols="30" rows="10"></textarea>
 
     </div>

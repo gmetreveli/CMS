@@ -36,13 +36,10 @@
 
                         switch ($source){
 
-                            case '1';
-                            echo 'nice';
+                            case 'add_post';
+                                include  "includes/add_post.php";
                             break;
 
-                            case '2';
-                            echo 'not so nice';
-                            break;
 
                             default:
                                 include  "includes/view_all_posts.php";
