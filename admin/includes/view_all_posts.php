@@ -42,22 +42,24 @@
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comment_count}</td>";
         echo "<td>{$post_date}</td>";
+        echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
         echo "</tr>";
 
     }
 
     ?>
 
-    <td>10</td>
-    <td>Giorgi Metreveli</td>
-    <td>Bootsrtap Framework</td>
-    <td>Bootstrap</td>
-    <td>Status</td>
-    <td>Image</td>
-    <td>Tags</td>
-    <td>Comments</td>
-    <td>Date</td>
-
     </tbody>
 
 </table>
+
+<?php
+if (isset($_GET['delete'])){
+    $the_post_id = $_GET['delete'];
+    $query = "DELETE from posts WHERE post_id = {$the_post_id}";
+    $delete_query = mysqli_query($connection, $query);
+
+    header("Location: posts.php");
+}
+
+?>
