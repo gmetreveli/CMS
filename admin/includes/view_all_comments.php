@@ -28,7 +28,7 @@
         $comment_author = $row['comment_author'];
         $comment_content = $row['comment_content'];
         $comment_email = $row['comment_email'];
-        $comment_status = $row['comment_statusl'];
+        $comment_status = $row['comment_status'];
         $comment_date = $row['comment_date'];
 
 
