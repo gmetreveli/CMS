@@ -41,6 +41,11 @@
                             break;
 
 
+                            case 'edit_post';
+                                include  "includes/edit_post.php";
+                                break;
+
+
                             default:
                                 include  "includes/view_all_posts.php";
                             break;
