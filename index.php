@@ -21,7 +21,7 @@ include  "includes/navigation.php";
             <div class="col-md-8">
 
                 <?php
-                    $query = "SELECT * FROM posts";
+                    $query = "SELECT * FROM posts ";
                     $select_all_posts_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_posts_query)){
                         $post_id = $row['post_id'];
@@ -30,6 +30,13 @@ include  "includes/navigation.php";
                         $post_date = $row['post_date'];
                         $post_image = $row['post_image'];
                         $post_content = substr($row['post_content'], 0, 150);
+
+                        $post_status = $row['post_status'];
+
+                        if ($post_status !== 'published'){
+
+                            echo "<h1 class='text-center'>Sorry no posts in this section</h1> ";
+                        } else {
 
                      ?>
 
@@ -55,7 +62,7 @@ include  "includes/navigation.php";
                         <hr>
 
 
-                    <?php }
+                    <?php } }
                 ?>
 
 
