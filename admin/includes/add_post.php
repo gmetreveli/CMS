@@ -40,7 +40,7 @@
 
     <div class="form-group">
 
-        <select name="post_category" id="post_category">
+        <select name="post_category_id" id="post_category">
 
             <?php
 

@@ -75,9 +75,9 @@ include  "includes/navigation.php";
 
                     $the_post_id = $_GET['p_id'];
 
-                    $comment_author = $_POST['comment_author'];
-                    $comment_email = $_POST['comment_email'];
-                    $comment_content = $_POST['comment_content'];
+                    $comment_author = mysqli_real_escape_string($connection, $_POST['comment_author']);
+                    $comment_email = mysqli_real_escape_string($connection, $_POST['comment_email']);
+                    $comment_content = mysqli_real_escape_string($connection, $_POST['comment_content']);
 
 
                     $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date)";
@@ -126,7 +126,7 @@ include  "includes/navigation.php";
 
             <?php
 
-                $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id}";
+                $query = "SELECT * FROM comments WHERE comment_post_id = {$the_post_id} ";
                 $query .= "AND comment_status = 'approved' ";
                 $query .= "ORDER BY comment_id DESC ";
 
@@ -137,9 +137,12 @@ include  "includes/navigation.php";
 
                 while($row = mysqli_fetch_array($select_comment_query)){
 
-                    $comment_date = $row['comment_date'];
-                    $comment_content = $row['comment_content'];
-                    $comment_author = $row['comment_author'];
+//                    $comment_date = $row['comment_date'];
+                    $comment_date = mysqli_real_escape_string($connection, $row['comment_date']);
+//                    $comment_content = $row['comment_content'];
+                    $comment_content = mysqli_real_escape_string($connection, $row['comment_content']);
+//                    $comment_author = $row['comment_author'];
+                    $comment_author = mysqli_real_escape_string($connection, $row['comment_author']);
 
                     ?>
 
