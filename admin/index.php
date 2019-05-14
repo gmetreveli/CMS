@@ -20,7 +20,8 @@
 
                         <h1 class="page-header">
                             Welcome to Admin
-                            <small>User</small>
+
+                            <small><?php $_SESSION['username']; ?></small>
                         </h1>
 
                     </div>
