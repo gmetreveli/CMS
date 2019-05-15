@@ -56,7 +56,6 @@ include  "includes/navigation.php";
                 <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 
@@ -113,7 +112,7 @@ include  "includes/navigation.php";
 
                     <div class="form-group">
                         <label for="Comment">Your Comment</label>
-                        <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                        <textarea name="comment_content" id="body" class="form-control" rows="3"></textarea>
                     </div>
 
                     <button type="submit" name="create_comment" class="btn btn-primary">Submit</button>
