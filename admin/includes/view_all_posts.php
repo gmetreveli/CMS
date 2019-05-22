@@ -31,6 +31,33 @@
                     confirmQuery($delete_from_posts);
                     Break;
 
+                case 'clone':
+
+                    $query = "SELECT * FROM posts WHERE post_id = {$post_value_id} ";
+                    $select_post_query = mysqli_query($connection, $query);
+
+
+                    while ($row = mysqli_fetch_array($select_post_query)){
+                        $post_title = mysqli_real_escape_string($connection, $row['post_title']);
+                        $post_category_id = $row['post_category_id'];
+                        $post_date = $row['post_date'];
+                        $post_author= mysqli_real_escape_string($connection, $row['post_author']);
+                        $post_status = $row['post_status'];
+                        $post_image = $row['post_image'];
+                        $post_tags = $row['post_tags'];
+                        $post_content = mysqli_real_escape_string($connection, $row['post_content']);
+
+                    }
+
+                    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+
+                    $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
+
+                    $copy_query = mysqli_query($connection, $query);
+
+                    confirmQuery($select_post_query);
+                    Break;
+
             }
         }
 
@@ -50,6 +77,7 @@
                 <option value="published">Publish</option>
                 <option value="draft">Draft</option>
                 <option value="delete">Delete</option>
+                <option value="clone">Clone</option>
                 
             </select>
             
@@ -84,7 +112,7 @@
 
         <?php
 
-        $query = "SELECT * FROM posts ";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC ";
         $select_posts = mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_posts)) {
