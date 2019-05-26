@@ -23,8 +23,9 @@
                         $query = "SELECT * FROM categories";
                         $select_all_categories_query = mysqli_query($connection, $query);
                         while ($row = mysqli_fetch_assoc($select_all_categories_query)){
+                            $cat_id = $row['cat_id'];
                             $cat_title = $row['cat_title'];
-                            echo "<li><a href='#'>{$cat_title}</a></li>";
+                            echo "<li><a href='category.php?category=$cat_id'>{$cat_title}</a></li>";
                         }
                     ?>
 
@@ -37,14 +38,15 @@
 
 
                 <?php
+                    //This if checks whether session is started or not, and if it's not started, it starts it.
+                    if (session_status() == PHP_SESSION_NONE) session_start();
 
                     if (isset($_SESSION['user_role'])){
 
                         if (isset($_GET['p_id'])){
 
                             $the_post_id = $_GET['p_id'];
-
-                            echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+                            echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit post</a></li>";
                         }
 
                     }

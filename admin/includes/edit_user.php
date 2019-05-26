@@ -42,9 +42,10 @@ if (isset($_POST['edit_user'])){
 
 
     $query = "SELECT randSalt FROM users";
-    $select_randsalt_query = mysqli_query = mysqli_query($connection, $query);
-    if (!$select_randsalt_query){
+    $select_randsalt_query = mysqli_query($connection, $query);
+    if(!$select_randsalt_query) {
         die("Query Failed" . mysqli_error($connection));
+
     }
 
     $row = mysqli_fetch_array($select_randsalt_query);

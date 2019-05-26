@@ -1,5 +1,5 @@
 
-$(document).ready(function() {
+ $(document).ready(function() {
 
     //CK EDITOR
 
@@ -12,9 +12,9 @@ $(document).ready(function() {
 
 
     $('#selectAllBoxes').click(function (event) {
-        
+
         if (this.checked) {
-            
+
             $('.checkBoxes').each(function () {
                 this.checked = true;
             });
@@ -26,8 +26,8 @@ $(document).ready(function() {
             });
 
         }
-        
+
     });
 
 
-});
+ });
