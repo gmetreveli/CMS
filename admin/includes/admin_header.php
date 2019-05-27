@@ -45,11 +45,11 @@ if (!isset($_SESSION['user_role'])){
     <![endif]-->
 
 
-    <link href="css/loader.css" rel="stylesheet" type="text/css">
-
+    <script src="js/jquery.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+    <script src="js/scripts.js"></script>
 
 </head>
 

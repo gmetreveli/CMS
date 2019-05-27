@@ -117,7 +117,7 @@
     <div class="form-group">
 
         <select name="post_status" id="">
-            <optipn value ='<?php echo $post_status; ?>'><?php echo $post_status; ?></optipn>
+            <option value ='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
 
                 <?php
 

@@ -129,7 +129,7 @@
             echo "<tr>";
             ?>
 
-            <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value=''<?php echo $post_id; ?>></td>";
+            <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
 
             <?php
 
