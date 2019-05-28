@@ -42,3 +42,19 @@
 
 
  });
+
+
+function load_users_online() {
+
+    $.get("functions.php?online_users=result", function (data) {
+
+        $(".users_online").text(data);
+
+    });
+}
+
+setInterval(function () {
+
+    load_users_online();
+},777);
+
