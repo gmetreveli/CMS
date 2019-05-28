@@ -6,31 +6,17 @@
         $user_firstname = mysqli_real_escape_string($connection, $_POST['user_firstname']);
         $user_lastname = mysqli_real_escape_string($connection, $_POST['user_lastname']);
         $user_role = $_POST['user_role'];
+
         $username = mysqli_real_escape_string($connection, $_POST['username']);
         $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
         $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
 
+        $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 7));
 
-        $query = "SELECT randSalt FROM users";
-        $select_randsalt_query = mysqli_query($connection, $query);
-        if(!$select_randsalt_query) {
-            die("Query Failed" . mysqli_error($connection));
-
-        }
-
-        $row = mysqli_fetch_array($select_randsalt_query);
-        $salt = $row['randSalt'];
-
-        $password = crypt($user_password, $salt);
-
-//        $post_image = $_FILES['post_image']['name'];
-//        $post_image_temp = $_FILES['post_image']['tmp_name'];
-//
-//        move_uploaded_file($post_image_temp, "../images/$post_image");
 
         $query = "INSERT INTO users(user_firstname, user_lastname, user_role, username, user_email, user_password) ";
 
-        $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$password}')";
+        $query .= "VALUES('{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}')";
 
         $create_user_query = mysqli_query($connection, $query);
 
