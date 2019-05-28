@@ -30,4 +30,15 @@
     });
 
 
+    var div_box = "<div id='load-screen'><div id='loading'></div></div></div>";
+
+    $("body").prepend(div_box);
+
+    $('#load-screen').delay(777).fadeOut(666, function () {
+
+        $(this).remove();
+
+    });
+
+
  });
