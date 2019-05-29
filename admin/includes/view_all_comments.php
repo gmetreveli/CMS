@@ -63,6 +63,7 @@ if (isset($_POST['checkBoxArray'])){
 
         <thead>
         <tr>
+            <th><input id='selectAllBoxes' type='checkbox'></th>
             <th>Id</th>
             <th>Author</th>
             <th>Comment</th>

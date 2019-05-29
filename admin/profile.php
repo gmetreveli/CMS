@@ -4,9 +4,9 @@
 
     if (isset($_SESSION['username'])){
 
-        $username = $_SESSION['username'];
+        $user_role = $_SESSION['user_role'];
 
-        $query = "SELECT * FROM users WHERE username = '{$username}'";
+        $query = "SELECT * FROM users WHERE user_role = '{$user_role}'";
 
         $select_user_profile = mysqli_query($connection, $query);
 
@@ -33,23 +33,41 @@ if (isset($_POST['edit_user'])){
 
     $user_firstname = mysqli_real_escape_string($connection, $_POST['user_firstname']);
     $user_lastname = mysqli_real_escape_string($connection, $_POST['user_lastname']);
+
     $username = mysqli_real_escape_string($connection, $_POST['username']);
     $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
     $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
 
 
-    $query = "UPDATE users SET ";
-    $query .= "user_firstname = '{$user_firstname}', ";
-    $query .= "user_lastname = '{$user_lastname}', ";
-    $query .= "username = '{$username}', ";
-    $query .= "user_email = '{$user_email}', ";
-    $query .= "user_password = '{$user_password}' ";
-    $query .= "WHERE username = '{$username}' ";
+    if (!empty($user_password)){
+
+    $password_query = "SELECT user_password FROM users WHERE user_role = '{$user_role}'";
+    $get_user_query = mysqli_query($connection, $password_query);
+
+    confirmQuery($get_user_query);
+
+    $row = mysqli_fetch_array($get_user_query);
+
+    $db_user_password = $row['user_password'];
+
+    if ($db_user_password != $user_password) {
+        $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 7));
+
+        $query = "UPDATE users SET ";
+        $query .= "user_firstname = '{$user_firstname}', ";
+        $query .= "user_lastname = '{$user_lastname}', ";
+        $query .= "username = '{$username}', ";
+        $query .= "user_email = '{$user_email}', ";
+        $query .= "user_password = '{$hashed_password}' ";
+        $query .= "WHERE username = '{$username}' ";
 
 
-    $edit_user_query = mysqli_query($connection, $query);
+        $edit_user_query = mysqli_query($connection, $query);
 
-    confirmQuery($edit_user_query);
+        confirmQuery($edit_user_query);
+    }
+
+    }
 }
 
 ?>

@@ -56,7 +56,7 @@
 
             if ($db_user_password != $user_password){
                 $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 7));
-            }
+
 
 
             $query = "UPDATE users SET ";
@@ -74,6 +74,8 @@
             confirmQuery($edit_user_query);
 
             echo "User Updated" . "<a href='users.php'>View Users</a>";
+
+            }
 
         }
 
