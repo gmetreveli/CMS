@@ -25,7 +25,7 @@ include "includes/navigation.php";
 
                 if (isset($_POST['submit'])) {
 
-                    $search = $_POST['search'];
+                    $search = escape($_POST['search']);
 
                     $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
                     $search_query = mysqli_query($connection, $query);
@@ -40,11 +40,11 @@ include "includes/navigation.php";
                     } else {
 
                         while ($row = mysqli_fetch_assoc($search_query)){
-                            $post_title = $row['post_title'];
-                            $post_author = $row['post_author'];
-                            $post_date = $row['post_date'];
-                            $post_image = $row['post_image'];
-                            $post_content = $row['post_content'];
+                            $post_title = escape($row['post_title']);
+                            $post_author = escape($row['post_author']);
+                            $post_date = escape($row['post_date']);
+                            $post_image = escape($row['post_image']);
+                            $post_content = escape($row['post_content']);
 
                     ?>
 

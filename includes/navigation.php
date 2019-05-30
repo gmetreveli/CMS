@@ -1,3 +1,4 @@
+<?php  include "admin/functions.php"; ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
 
@@ -23,8 +24,8 @@
                         $query = "SELECT * FROM categories";
                         $select_all_categories_query = mysqli_query($connection, $query);
                         while ($row = mysqli_fetch_assoc($select_all_categories_query)){
-                            $cat_id = $row['cat_id'];
-                            $cat_title = $row['cat_title'];
+                            $cat_id = escape($row['cat_id']);
+                            $cat_title = escape($row['cat_title']);
                             echo "<li><a href='category.php?category=$cat_id'>{$cat_title}</a></li>";
                         }
                     ?>
@@ -45,7 +46,7 @@
 
                         if (isset($_GET['p_id'])){
 
-                            $the_post_id = $_GET['p_id'];
+                            $the_post_id = escape($_GET['p_id']);
                             echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit post</a></li>";
                         }
 

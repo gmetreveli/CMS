@@ -23,8 +23,8 @@ include  "includes/navigation.php";
             <?php
 
             if (isset($_GET['p_id'])){
-                $the_post_id = $_GET['p_id'];
-                $the_post_user = $_GET['user'];
+                $the_post_id = escape($_GET['p_id']);
+                $the_post_user = escape($_GET['user']);
 
             }
 
@@ -32,11 +32,11 @@ include  "includes/navigation.php";
             $query = "SELECT * FROM posts WHERE post_user = '{$the_post_user}' ";
             $select_all_posts_query = mysqli_query($connection, $query);
             while ($row = mysqli_fetch_assoc($select_all_posts_query)){
-                $post_title = $row['post_title'];
-                $post_user = $row['post_user'];
-                $post_date = $row['post_date'];
-                $post_image = $row['post_image'];
-                $post_content = $row['post_content'];
+                $post_title = escape($row['post_title']);
+                $post_user = escape($row['post_user']);
+                $post_date = escape($row['post_date']);
+                $post_image = escape($row['post_image']);
+                $post_content = escape($row['post_content']);
 
                 ?>
 
@@ -73,11 +73,11 @@ include  "includes/navigation.php";
 
                 if (isset($_POST['create_comment'])){
 
-                    $the_post_id = $_GET['p_id'];
+                    $the_post_id = escape($_GET['p_id']);
 
-                    $comment_author = mysqli_real_escape_string($connection, $_POST['comment_author']);
-                    $comment_email = mysqli_real_escape_string($connection, $_POST['comment_email']);
-                    $comment_content = mysqli_real_escape_string($connection, $_POST['comment_content']);
+                    $comment_author = escape($_POST['comment_author']);
+                    $comment_email = escape($_POST['comment_email']);
+                    $comment_content = escape($_POST['comment_content']);
 
                     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content) ){
 
