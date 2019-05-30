@@ -3,7 +3,7 @@
 
     if (isset($_POST['create_post'])){
 
-        $post_author = mysqli_real_escape_string($connection, $_POST['post_author']);
+        $post_user = mysqli_real_escape_string($connection, $_POST['post_user']);
         $post_title = mysqli_real_escape_string($connection, $_POST['post_title']);
         $post_category_id = $_POST['post_category_id'];
         $post_status = $_POST['post_status'];
@@ -16,9 +16,9 @@
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
-        $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+        $query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date, post_image, post_content, post_tags, post_status) ";
 
-        $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
+        $query .= "VALUES({$post_category_id},'{$post_title}','{$post_user}',now(),'{$post_image}','{$post_content}','{$post_tags}','{$post_status}')";
 
         $create_post_query = mysqli_query($connection, $query);
 
@@ -44,6 +44,7 @@
 
     <div class="form-group">
 
+        <label for="category">Category</label>
         <select name="post_category_id" id="post_category">
 
             <?php
@@ -65,12 +66,38 @@
 
     </div>
 
+
     <div class="form-group">
 
-        <label for="author">Post Author</label>
-        <input type="text" class="form-control" name="post_author">
+        <label for="user">User</label>
+        <select name="post_user" id="post_category">
+
+            <?php
+
+            $query = "SELECT * FROM users";
+            $select_users= mysqli_query($connection, $query);
+
+            confirmQuery($select_users);
+
+            while ($row = mysqli_fetch_assoc($select_users)) {
+                $user_id = $row['user_id'];
+                $username = $row['username'];
+
+                echo "<option value='$username'>$username</option>";
+            }
+            ?>
+
+        </select>
 
     </div>
+
+
+<!--    <div class="form-group">-->
+<!---->
+<!--        <label for="author">Post Author</label>-->
+<!--        <input type="text" class="form-control" name="post_author">-->
+<!---->
+<!--    </div>-->
 
     <div class="form-group">
 
