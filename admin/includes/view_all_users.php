@@ -81,33 +81,51 @@
 
     if (isset($_GET['change_to_admin'])){
 
-        $the_user_id = $_GET['change_to_admin'];
+        if (isset($_SESSION['user_role'])) {
 
-        $query = "UPDATE users SET user_role = 'admin' WHERE user_id = $the_user_id ";
-        $change_to_admin_query = mysqli_query($connection, $query);
+            if ($_SESSION['user_role'] == 'admin') {
 
-        header("Location: users.php");
+                $the_user_id = mysqli_real_escape_string($connection, $_GET['change_to_admin']);
+
+                $query = "UPDATE users SET user_role = 'admin' WHERE user_id = $the_user_id ";
+                $change_to_admin_query = mysqli_query($connection, $query);
+
+                header("Location: users.php");
+            }
+        }
     }
 
 
     if (isset($_GET['change_to_subscriber'])){
 
-        $the_user_id = $_GET['change_to_subscriber'];
+        if (isset($_SESSION['user_role'])) {
 
-        $query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = $the_user_id ";
-        $change_to_subscriber_query = mysqli_query($connection, $query);
+            if ($_SESSION['user_role'] == 'admin') {
 
-        header("Location: users.php");
+                mysqli_real_escape_string($connection, $the_user_id = $_GET['change_to_subscriber']);
+
+                $query = "UPDATE users SET user_role = 'subscriber' WHERE user_id = $the_user_id ";
+                $change_to_subscriber_query = mysqli_query($connection, $query);
+
+                header("Location: users.php");
+            }
+        }
     }
 
 if (isset($_GET['delete'])){
 
-    $the_user_id = $_GET['delete'];
+    if (isset($_SESSION['user_role'])) {
 
-    $query = "DELETE FROM users WHERE user_id = {$the_user_id}";
-    $delete_user_query = mysqli_query($connection, $query);
+        if ($_SESSION['user_role'] == 'admin') {
 
-    header("Location: users.php");
+            $the_user_id = mysqli_real_escape_string($connection, $_GET['delete']);
+
+            $query = "DELETE FROM users WHERE user_id = {$the_user_id}";
+            $delete_user_query = mysqli_query($connection, $query);
+
+            header("Location: users.php");
+        }
+    }
 }
 
 ?>
