@@ -3,13 +3,13 @@
 
     if (isset($_POST['create_user'])){
 
-        $user_firstname = mysqli_real_escape_string($connection, $_POST['user_firstname']);
-        $user_lastname = mysqli_real_escape_string($connection, $_POST['user_lastname']);
-        $user_role = $_POST['user_role'];
+        $user_firstname = escape($_POST['user_firstname']);
+        $user_lastname = escape($_POST['user_lastname']);
+        $user_role = escape($_POST['user_role']);
 
-        $username = mysqli_real_escape_string($connection, $_POST['username']);
-        $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
-        $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
+        $username = escape($_POST['username']);
+        $user_email = escape($_POST['user_email']);
+        $user_password = escape($_POST['user_password']);
 
         $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 7));
 

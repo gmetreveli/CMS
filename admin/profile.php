@@ -4,7 +4,7 @@
 
     if (isset($_SESSION['username'])){
 
-        $user_role = $_SESSION['user_role'];
+        $user_role = escape($_SESSION['user_role']);
 
         $query = "SELECT * FROM users WHERE user_role = '{$user_role}'";
 
@@ -12,13 +12,13 @@
 
         while ($row = mysqli_fetch_array($select_user_profile)){
 
-            $user_id = $row['user_id'];
-            $username = $row['username'];
-            $user_password = $row['user_password'];
-            $user_firstname = $row['user_firstname'];
-            $user_lastname = $row['user_lastname'];
-            $user_email = $row['user_email'];
-            $user_image = $row['user_image'];
+            $user_id = escape($row['user_id']);
+            $username = escape($row['username']);
+            $user_password = escape($row['user_password']);
+            $user_firstname = escape($row['user_firstname']);
+            $user_lastname = escape($row['user_lastname']);
+            $user_email = escape($row['user_email']);
+            $user_image = escape($row['user_image']);
         }
 
 
@@ -31,12 +31,12 @@
 
 if (isset($_POST['edit_user'])){
 
-    $user_firstname = mysqli_real_escape_string($connection, $_POST['user_firstname']);
-    $user_lastname = mysqli_real_escape_string($connection, $_POST['user_lastname']);
+    $user_firstname = escape($_POST['user_firstname']);
+    $user_lastname = escape($_POST['user_lastname']);
 
-    $username = mysqli_real_escape_string($connection, $_POST['username']);
-    $user_email = mysqli_real_escape_string($connection, $_POST['user_email']);
-    $user_password = mysqli_real_escape_string($connection, $_POST['user_password']);
+    $username = escape($_POST['username']);
+    $user_email = escape($_POST['user_email']);
+    $user_password = escape($_POST['user_password']);
 
 
     if (!empty($user_password)){
@@ -48,7 +48,7 @@ if (isset($_POST['edit_user'])){
 
     $row = mysqli_fetch_array($get_user_query);
 
-    $db_user_password = $row['user_password'];
+    $db_user_password = escape($row['user_password']);
 
     if ($db_user_password != $user_password) {
         $hashed_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 7));

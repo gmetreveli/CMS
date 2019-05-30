@@ -10,30 +10,30 @@
     $select_posts_by_id = mysqli_query($connection, $query);
 
     while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
-        $post_id = $row['post_id'];
-        $post_user = $row['post_user'];
-        $post_title = $row['post_title'];
-        $post_category_id = $row['post_category_id'];
-        $post_status = $row['post_status'];
-        $post_image = $row['post_image'];
-        $post_content = $row['post_content'];
-        $post_tags = $row['post_tags'];
-        $post_comment_count = $row['post_comment_count'];
-        $post_date = $row['post_date'];
+        $post_id = escape($row['post_id']);
+        $post_user = escape($row['post_user']);
+        $post_title = escape($row['post_title']);
+        $post_category_id = escape($row['post_category_id']);
+        $post_status = escape($row['post_status']);
+        $post_image = escape($row['post_image']);
+        $post_content = escape($row['post_content']);
+        $post_tags = escape($row['post_tags']);
+        $post_comment_count = escape($row['post_comment_count']);
+        $post_date = escape($row['post_date']);
     }
 
     if (isset($_POST['update_post'])){
 
-        $post_user = mysqli_real_escape_string($connection, $_POST['post_user']);
-        $post_title = mysqli_real_escape_string($connection, $_POST['post_title']);
-        $post_category_id = $_POST['post_category_id'];
-        $post_status = $_POST['post_status'];
+        $post_user = escape($_POST['post_user']);
+        $post_title = escape($_POST['post_title']);
+        $post_category_id = escape($_POST['post_category_id']);
+        $post_status = escape($_POST['post_status']);
 
         $post_image = $_FILES['post_image']['name'];
         $post_image_temp = $_FILES['post_image']['tmp_name'];
 
-        $post_content = mysqli_real_escape_string($connection, $_POST['post_content']);
-        $post_tags = $_POST['post_tags'];
+        $post_content = escape($_POST['post_content']);
+        $post_tags = escape($_POST['post_tags']);
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -43,7 +43,7 @@
             $select_image = mysqli_query($connection, $query);
 
             while($row = mysqli_fetch_array($select_image)){
-                $post_image = $row['post_image'];
+                $post_image = escape($row['post_image']);
             }
         }
 
@@ -94,8 +94,8 @@
             confirmQuery($select_categories);
 
             while ($row = mysqli_fetch_assoc($select_categories)) {
-                $cat_id = $row['cat_id'];
-                $cat_title = $row['cat_title'];
+                $cat_id = escape($row['cat_id']);
+                $cat_title = escape($row['cat_title']);
 
                 echo "<option value='{$cat_id}'>$cat_title</option>";
             }
@@ -121,8 +121,8 @@
             confirmQuery($select_users);
 
             while ($row = mysqli_fetch_assoc($select_users)) {
-                $user_id = $row['user_id'];
-                $username = $row['username'];
+                $user_id = escape($row['user_id']);
+                $username = escape($row['username']);
 
                 echo "<option value='$username'>$username</option>";
             }

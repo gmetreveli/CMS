@@ -3,16 +3,16 @@
 
     if (isset($_POST['create_post'])){
 
-        $post_user = mysqli_real_escape_string($connection, $_POST['post_user']);
-        $post_title = mysqli_real_escape_string($connection, $_POST['post_title']);
-        $post_category_id = $_POST['post_category_id'];
-        $post_status = $_POST['post_status'];
+        $post_user = escape($_POST['post_user']);
+        $post_title = escape($_POST['post_title']);
+        $post_category_id = escape($_POST['post_category_id']);
+        $post_status = escape($_POST['post_status']);
 
         $post_image = $_FILES['post_image']['name'];
         $post_image_temp = $_FILES['post_image']['tmp_name'];
 
-        $post_content = mysqli_real_escape_string($connection, $_POST['post_content']);
-        $post_tags = $_POST['post_tags'];
+        $post_content = escape($_POST['post_content']);
+        $post_tags = escape($_POST['post_tags']);
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -55,8 +55,8 @@
             confirmQuery($select_categories);
 
             while ($row = mysqli_fetch_assoc($select_categories)) {
-                $cat_id = $row['cat_id'];
-                $cat_title = $row['cat_title'];
+                $cat_id = escape($row['cat_id']);
+                $cat_title = escape($row['cat_title']);
 
                 echo "<option value='$cat_id'>$cat_title</option>";
             }
@@ -80,8 +80,8 @@
             confirmQuery($select_users);
 
             while ($row = mysqli_fetch_assoc($select_users)) {
-                $user_id = $row['user_id'];
-                $username = $row['username'];
+                $user_id = escape($row['user_id']);
+                $username = escape($row['username']);
 
                 echo "<option value='$username'>$username</option>";
             }
@@ -92,12 +92,6 @@
     </div>
 
 
-<!--    <div class="form-group">-->
-<!---->
-<!--        <label for="author">Post Author</label>-->
-<!--        <input type="text" class="form-control" name="post_author">-->
-<!---->
-<!--    </div>-->
 
     <div class="form-group">
 
