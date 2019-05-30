@@ -1,4 +1,4 @@
-<?php  include "admin/functions.php"; ?>
+<?php // include "admin/functions.php"; ?>
 <div class="col-md-4">
 
     <!-- Blog Search Well -->

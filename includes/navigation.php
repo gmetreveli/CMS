@@ -1,4 +1,4 @@
-<?php  include "admin/functions.php"; ?>
+<?php // include "admin/functions.php"; ?>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
 

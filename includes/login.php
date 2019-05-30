@@ -1,7 +1,7 @@
 
 <?php  include "db.php"; ?>
 <?php  session_start(); ?>
-<?php  include "admin/functions.php"; ?>
+<?php  include "../admin/functions.php"; ?>
 
 <?php
 
