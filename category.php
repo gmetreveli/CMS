@@ -23,11 +23,28 @@ include  "includes/navigation.php";
                 <?php
 
                     if (isset($_GET['category'])){
-                        $post_category_id = escape($_GET['category']);
-                    }
 
-                    $query = "SELECT * FROM posts WHERE post_category_id=$post_category_id";
+                        $post_category_id = escape($_GET['category']);
+
+                        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'){
+
+                            $query = "SELECT * FROM posts WHERE post_id = $post_category_id ";
+
+                        } else {
+
+                            $query = "SELECT * FROM posts WHERE post_category_id=$post_category_id AND post_status = 'published' ";
+
+                        }
+
+
                     $select_all_posts_query = mysqli_query($connection, $query);
+
+                    if (mysqli_num_rows($select_all_posts_query) < 1){
+
+                        echo "<h1 class='text-center'>No published post available at the moment</h1>";
+
+                    } else {
+
                     while ($row = mysqli_fetch_assoc($select_all_posts_query)){
                         $post_id = escape($row['post_id']);
                         $post_title = escape($row['post_title']);
@@ -60,7 +77,10 @@ include  "includes/navigation.php";
                         <hr>
 
 
-                    <?php }
+                    <?php }}} else {
+
+                        header("Location: index.php");
+                    }
                 ?>
 
 

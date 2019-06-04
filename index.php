@@ -38,9 +38,24 @@ include  "includes/navigation.php";
                         $page_1= ($page * $per_page) -5;
                     }
 
-                    $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
+                    if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'){
+
+                        $post_query_count = "SELECT * FROM posts ";
+
+                    } else {
+
+                        $post_query_count = "SELECT * FROM posts WHERE post_status = 'published'";
+
+                    }
+
                     $find_count = mysqli_query($connection, $post_query_count);
                     $count = mysqli_num_rows($find_count);
+
+                    if ($count < 1){
+
+                        echo "<h1 class='text-center'>No published posts available at the moment</h1>";
+
+                    } else{
 
                     $count = ceil($count / $per_page);
 
@@ -57,7 +72,7 @@ include  "includes/navigation.php";
 
                         $post_status = escape($row['post_status']);
 
-                        if ($post_status == 'published'){
+
 
                      ?>
 
