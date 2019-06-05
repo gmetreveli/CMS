@@ -120,3 +120,44 @@ function delete_categories(){
     }
 
 }
+
+
+function record_count($table){
+
+    global $connection;
+
+    $query = "SELECT * FROM " .$table;
+    $select_all_records = mysqli_query($connection, $query);
+
+    $result = mysqli_num_rows($select_all_records);
+
+    confirmQuery($result);
+
+    return $result;
+}
+
+
+function check_status($table, $column, $status){
+
+    global $connection;
+
+    $query = "SELECT * FROM $table WHERE $column = '$status' ";
+    $result = mysqli_query($connection, $query);
+
+    return  mysqli_num_rows($result);
+}
+
+
+function check_user_role($table, $column, $role){
+
+    global $connection;
+
+    $query = "SELECT * FROM $table WHERE $column = '$role' ";
+    $result = mysqli_query($connection, $query);
+
+    return  mysqli_num_rows($result);
+}
+
+
+
+
