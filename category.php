@@ -26,13 +26,15 @@ include  "includes/navigation.php";
 
                         $post_category_id = escape($_GET['category']);
 
-                        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'){
+                        if (is_admin($_SESSION['username'])){
 
-                            $query = "SELECT * FROM posts WHERE post_id = $post_category_id ";
+                            $stmt1 = mysqli_prepare($connection,"SELECT post_id, post_title, post_author, post_date, post_image, post_content  FROM posts WHERE post_id = ? ");
 
                         } else {
 
-                            $query = "SELECT * FROM posts WHERE post_category_id=$post_category_id AND post_status = 'published' ";
+                            $stmt2 = mysqli_prepare($connection,"SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id= ? AND post_status = ? ");
+
+                            $published = 'published';
 
                         }
 
