@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-                                        <div class='huge'><?php echo $post_count = record_count('posts'); ?></div>";
+                                        <div class='huge'><?php echo $post_count = record_count('posts'); ?></div>
 
                                         <div>Posts</div>
 
@@ -67,7 +67,7 @@
                                     <div class="col-xs-9 text-right">
 
 
-                                        <div class='huge'><?php echo $comment_count = record_count('comments'); ?></div>";
+                                        <div class='huge'><?php echo $comment_count = record_count('comments'); ?></div>
 
                                         <div>Comments</div>
 
@@ -93,7 +93,7 @@
                                     <div class="col-xs-9 text-right">
 
 
-                                        <div class='huge'><?php echo $user_count = record_count('users'); ?></div>";
+                                        <div class='huge'><?php echo $user_count = record_count('users'); ?></div>
 
                                         <div> Users</div>
 
@@ -119,7 +119,7 @@
                                     <div class="col-xs-9 text-right">
 
 
-                                        <div class='huge'><?php echo $category_count = record_count('categories'); ?></div>";
+                                        <div class='huge'><?php echo $category_count = record_count('categories'); ?></div>
 
                                         <div>Categories</div>
 
